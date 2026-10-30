@@ -46,7 +46,12 @@ class MainActivity : AppCompatActivity() {
                 "Referer" to "https://portal.app.flow.com.ar/"
             ))
 
-        player?.setMediaItem(mediaItem)
+        // Esperamos un segundo a que el reproductor se inicialice
+        android.os.Handler(android.os.Looper.getMainLooper()).postDelayed({
+            player?.setMediaItem(mediaItem)
+            player?.prepare()
+            player?.play()
+        }, 1000)
         player?.prepare()
         player?.play()
     }
