@@ -9,8 +9,12 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '17'
+      - name: Generate Gradle Wrapper
+        run: gradle wrapper --gradle-version 8.2
       - name: Build APK
-        run: gradle assembleDebug
+        run: |
+          chmod +x ./gradlew
+          ./gradlew assembleDebug
       - uses: actions/upload-artifact@v4
         with:
           name: Boca-TV-Play-APK
